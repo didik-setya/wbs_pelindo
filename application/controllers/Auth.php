@@ -43,6 +43,7 @@ class Auth extends CI_Controller {
                     $params = [
                         'email' => $email,
                         'status' => $user->is_active,
+                        'role' => $user->id_role
                     ];
                     $output = [
                         'success' => true,
