@@ -7,8 +7,13 @@ class Auth extends CI_Controller {
 
     public function proccess(){
 
-        $this->form_validation->set_rules('email', 'email', 'required|trim|valid_email');
-        $this->form_validation->set_rules('password', 'password', 'required|trim');
+        $this->form_validation->set_rules('email', 'email', 'required|trim|valid_email', [
+            'required' => 'Email harap di isi',
+            'valid_email' => 'Email harus valid '
+        ]);
+        $this->form_validation->set_rules('password', 'password', 'required|trim', [
+            'required' => 'Password harap di isi'
+        ]);
 
         if($this->form_validation->run() == false){
             $output = [
