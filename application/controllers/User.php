@@ -7,7 +7,7 @@ class User extends CI_Controller {
 
     public function load_email(){
         $view = $this->load->view('user/template_email', '', true);
-        $this->m->send_mail($view);
+        $this->m->send_mail(null, $view);
     }
 
     public function view_email(){

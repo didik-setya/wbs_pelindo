@@ -16,7 +16,35 @@
     <meta name="robots" content="noindex,nofollow" />
     <title><?= $title ?></title>
     <!-- Custom CSS -->
-    <link href="<?= base_url('assets/web/dashboard/') ?>/dist/css/style.min.css" rel="stylesheet" />
+    <link href="<?= base_url('assets/web/dashboard') ?>/dist/css/style.min.css" rel="stylesheet" />
+    <link href="<?= base_url('assets/web/dashboard') ?>/assets/libs/toastr/build/toastr.min.css" rel="stylesheet" />
+    <script src="<?= base_url('assets/web/dashboard') ?>/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="<?= base_url('assets/web/dashboard') ?>/assets/libs/toastr/build/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "1500",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+        }
+    </script>
+
+    <style>
+      .modal.fade.show {
+        backdrop-filter: blur(5px);
+      }
+    </style>
 
   </head>
 
@@ -240,29 +268,15 @@
                   <a class="dropdown-item" href="javascript:void(0)"
                     ><i class="mdi mdi-account me-1 ms-1"></i> My Profile</a
                   >
-                  <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="mdi mdi-wallet me-1 ms-1"></i> My Balance</a
-                  >
-                  <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="mdi mdi-email me-1 ms-1"></i> Inbox</a
-                  >
-                  <div class="dropdown-divider"></div>
+                 
                   <a class="dropdown-item" href="javascript:void(0)"
                     ><i class="mdi mdi-settings me-1 ms-1"></i> Account
                     Setting</a
                   >
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="javascript:void(0)"
+                  <a class="dropdown-item" href="<?= base_url('auth/logout') ?>"
                     ><i class="fa fa-power-off me-1 ms-1"></i> Logout</a
                   >
-                  <div class="dropdown-divider"></div>
-                  <div class="ps-4 p-10">
-                    <a
-                      href="javascript:void(0)"
-                      class="btn btn-sm btn-success btn-rounded text-white"
-                      >View Profile</a
-                    >
-                  </div>
+                 
                 </ul>
               </li>
 
@@ -325,17 +339,16 @@
       
     </div>
     
-    <script src="<?= base_url('assets/web/dashboard/') ?>/assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="<?= base_url('assets/web/dashboard/') ?>/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url('assets/web/dashboard') ?>/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="<?= base_url('assets/web/dashboard/') ?>/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="<?= base_url('assets/web/dashboard/') ?>/assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="<?= base_url('assets/web/dashboard') ?>/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="<?= base_url('assets/web/dashboard') ?>/assets/extra-libs/sparkline/sparkline.js"></script>
     <!--Wave Effects -->
-    <script src="<?= base_url('assets/web/dashboard/') ?>/dist/js/waves.js"></script>
+    <script src="<?= base_url('assets/web/dashboard') ?>/dist/js/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="<?= base_url('assets/web/dashboard/') ?>/dist/js/sidebarmenu.js"></script>
+    <script src="<?= base_url('assets/web/dashboard') ?>/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="<?= base_url('assets/web/dashboard/') ?>/dist/js/custom.min.js"></script>
+    <script src="<?= base_url('assets/web/dashboard') ?>/dist/js/custom.min.js"></script>
   </body>
 </html>

@@ -129,7 +129,6 @@
                         //unknow error
                         toastr["error"]('Unknow error', "Error")
                     }
-                    undisabled_form();
                 }
             });
 
