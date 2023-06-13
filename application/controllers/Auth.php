@@ -91,4 +91,43 @@ class Auth extends CI_Controller {
         redirect('auth');
     }
 
+    public function verify(){
+        $this->load->view('member/verify_email');
+    }
+
+    public function verify_email(){
+        // valid_ajax();
+        $email = $this->input->post('email');
+        $token = $this->input->post('token');
+
+        $this->db->from('email_token')->join('member', 'email_token.email = member.email')->where('email_token.email', $email)->where('token', $token);
+        $user = $this->db->get()->row();
+
+        if($user){
+            $this->db->trans_start();
+            $this->db->set('is_active', 1)->where('email', $email)->update('member');
+            $this->db->where('email', $email)->delete('email_token');
+            $this->db->trans_complete();
+
+            if($this->db->trans_status() == true){
+                $msg = [
+                    'success' => true,
+                    'msg' =>  'Verifikasi berhasil' 
+                ];
+            } else {
+                $msg = [
+                    'success' => false,
+                    'msg' =>  'Verifikasi gagal' 
+                ];
+            }
+
+        } else {
+            $msg = [
+                'success' => false,
+                'msg' => 'Verifikasi tidak valid'
+            ];
+        }
+        echo json_encode($msg);
+    }
+
 }

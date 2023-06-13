@@ -34,3 +34,12 @@ function access_menu(){
         exit('Error 403. Access denied');
     }
 }
+
+function valid_ajax(){
+    $t = get_instance();
+    if($t->input->is_ajax_request()){
+        return true;
+    } else {
+        exit('No direct script access allowed');
+    }
+}

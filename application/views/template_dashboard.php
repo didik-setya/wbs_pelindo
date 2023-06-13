@@ -18,8 +18,13 @@
     <!-- Custom CSS -->
     <link href="<?= base_url('assets/web/dashboard') ?>/dist/css/style.min.css" rel="stylesheet" />
     <link href="<?= base_url('assets/web/dashboard') ?>/assets/libs/toastr/build/toastr.min.css" rel="stylesheet" />
+    <link href="<?= base_url('assets/web/dashboard') ?>/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet"/>
+
     <script src="<?= base_url('assets/web/dashboard') ?>/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="<?= base_url('assets/web/dashboard') ?>/assets/libs/toastr/build/toastr.min.js"></script>
+    <script src="<?= base_url('assets/web/dashboard') ?>/assets/extra-libs/DataTables/datatables.min.js"></script>
+
+    
     <script>
         toastr.options = {
         "closeButton": true,

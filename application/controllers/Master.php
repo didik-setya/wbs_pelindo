@@ -22,6 +22,7 @@ class Master extends CI_Controller {
     }
 
     public function add_user(){
+        valid_ajax();
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[member.email]', [
             'required' => 'Email harap di isi',
             'valid_email' => 'Email tidak valid',
@@ -53,7 +54,7 @@ class Master extends CI_Controller {
         $pass = 'wbs_'. rand(10000, 99999);
         $token = base64_encode(random_bytes(32));
 
-        $link = base_url() . 'auth/verify?email='.$email.'&token'.$token;
+        $link = base_url() . 'auth/verify?email='.$email.'&token='.urlencode($token);
 
         //data for insert to database
         $data_member = [
@@ -119,6 +120,48 @@ class Master extends CI_Controller {
 
         $output['token'] = $this->security->get_csrf_hash();
         echo json_encode($output);
+    }
+
+    public function get_data_member(){
+        valid_ajax();
+        $data = $this->data->get_data_user();
+        $output = array();
+        $no = $_POST['start'];
+
+        foreach($data as $d){
+            if($d->is_active == 0){
+                $status = 'Tidak aktif';
+            } else if($d->is_active == 1){
+                $status = 'Aktif';
+            } else if($d->is_active == 2){
+                $status = 'Belum verifikasi email';
+            } else {
+                $status = 'Unknow user status';
+            }
+
+
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $d->nama;
+            $row[] = $status;
+            $row[] = '
+                    <button class="btn btn-sm btn-success text-white edit" data-id="'.md5(sha1($d->id_member)).'"><i class="fa fa-edit"></i></button>
+                    <button class="btn btn-sm btn-danger text-white delete" data-id="'.md5(sha1($d->id_member)).'"><i class="fa fa-trash"></i></button>
+                    <button class="btn btn-sm btn-info text-white detail" data-id="'.md5(sha1($d->id_member)).'"><i class="fa fa-search"></i></button>
+                ';
+
+            $output[] = $row;
+        }
+
+        $list = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->data->count_all_user(),
+            "recordsFiltered" => $this->data->count_filtered_user(),
+            "data" => $output,
+            "token" => $this->security->get_csrf_hash()
+        );
+        echo json_encode($list);
     }
 
 }

@@ -4,7 +4,22 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button class="btn btn-sm btn-success text-light" id="add-user"><i class="fa fa-plus"></i> Tambah</button>
+                <button class="btn btn-sm btn-success text-light mb-3" id="add-user"><i class="fa fa-plus"></i> Tambah</button>
+
+                <table class="table table-bordered w-100" id="tableUser">
+                    <thead>
+                        <tr>
+                            <th><b>#</b></th>
+                            <th><b>Nama User</b></th>
+                            <th><b>Status</b></th>
+                            <th><i class="fa fa-cogs"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
@@ -56,6 +71,11 @@
 </div>
 
 <script>
+
+    $(document).ready(function(){
+        load_data();
+    });
+
     $('#add-user').click(function(){
         clean_form();
         $('#modalUser').modal('show');
@@ -129,7 +149,7 @@
         })
 
 
-    })
+    });
 
     function clean_form(){
         $('#role').val('');
@@ -153,5 +173,37 @@
         $('#role').removeAttr('disabled', true);
         $('#user').removeAttr('disabled', true);
         $('#email').removeAttr('disabled', true);
+    }
+
+    function load_data(){
+        
+        let token = $('#token').val();
+
+        let data = $('#tableUser').dataTable({
+            "ordering": false,
+            "processing": true,
+            "serverSide": true,
+            "deferRender": true,
+            "order": [],
+            "columnDefs": [
+                { 
+                    "targets": [ 0 ], //first column / numbering column
+                    "orderable": false, //set not orderable
+                },
+            ],
+            "ajax": {
+                "url": "<?= base_url('master/get_data_member')?>",
+                "type": "POST",
+                "data": function(d){
+                    d.csrf_test_name = token;
+                }
+                
+            },
+            "drawCallback": function(d){
+                let newtoken = d.json.token;
+                $('#token').val(newtoken);
+            }
+            
+        });
     }
 </script>
