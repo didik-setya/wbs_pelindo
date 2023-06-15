@@ -43,3 +43,18 @@ function valid_ajax(){
         exit('No direct script access allowed');
     }
 }
+
+function jenis_laporan(){
+    $data = [
+        'Indikasi Penipuan',
+        'Indikasi Benturan Kepentingan',
+        'Indikasi Pencurian',
+        'Indikasi Tindakan Curang',
+        'Indikasi Penyuapan',
+        'Indikasi Korupsi',
+        'Indikasi Penggelapan',
+        'Indikasi Pelanggaran & Peraturan Perusahaan',
+        'Indikasi Pemerasan'
+    ];
+    return $data;
+}
