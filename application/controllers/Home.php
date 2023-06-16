@@ -49,7 +49,7 @@ class Home extends CI_Controller
                 'err_telp' => form_error('telp')
             ];
         } else {
-            $media_call = $_POST['media_call'];
+            $media_call = $this->input->post('media_call');
             $a = count($media_call);
             $data = array();
 
@@ -69,9 +69,10 @@ class Home extends CI_Controller
                 'telp' => $this->input->post('telp'),
                 'jln' => $this->input->post('jln'),
                 'kota' => $this->input->post('kota'),
-                'kode_pos' => $this->input->post('post'),
+                'kode_pos' => $this->input->post('pos'),
                 'wilayah' => $this->input->post('negara'),
-                'media_call' => $data
+                'media_call' => $data,
+                'other_media_call' => $this->input->post('lain_lain_form')
             ];
             $this->session->set_userdata($data);
             $output = [
@@ -82,8 +83,35 @@ class Home extends CI_Controller
 
     }
 
+    public function check_form_2(){
+        valid_ajax();
+
+        $laporan = $this->input->post('laporan');
+        $a = count($laporan);
+        $data_laporan = array();
+
+        for($b=0; $b<$a; $b++){
+            array_push($data_laporan, array(
+                $laporan[$b]
+            ));
+        }
+
+        $data = [
+            'jenis_laporan' => $laporan,
+            'apa_yang_terjadi' => $this->input->post('apa_yang_terjadi'),
+            'penyadaran_kasus' => $this->input->post('penyadaran_kasus'),
+            'other_jenis_laporan' => $this->input->post('other_laporan')
+        ];
+        $this->session->set_userdata($data);
+
+        $output = ['success' => true];
+    
+        echo json_encode($output);
+
+    }
+
     public function load_data(){
-        $data = $this->session->userdata('media_call');
+        $data = $this->session->userdata();
         var_dump($data);
     }
 }

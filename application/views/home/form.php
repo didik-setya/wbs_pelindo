@@ -113,13 +113,13 @@
                                     <button class="nav-link" id="pills-apa-tab" data-bs-toggle="pill" data-bs-target="#pills-apa" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Apa</button>
                                 </li>
                                 <li class="nav-item mx-1" role="presentation">
-                                    <button class="nav-link" id="pills-kapan-tab" data-bs-toggle="pill" data-bs-target="#pills-kapan" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" disabled>Kapan dan Dimana</button>
+                                    <button class="nav-link" id="pills-kapan-tab" data-bs-toggle="pill" data-bs-target="#pills-kapan" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Kapan dan Dimana</button>
                                 </li>
                                 <li class="nav-item mx-1" role="presentation">
-                                    <button class="nav-link" id="pills-siapa-tab" data-bs-toggle="pill" data-bs-target="#pills-siapa" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" disabled>Siapa</button>
+                                    <button class="nav-link" id="pills-siapa-tab" data-bs-toggle="pill" data-bs-target="#pills-siapa" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Siapa</button>
                                 </li>
                                 <li class="nav-item mx-1" role="presentation">
-                                    <button class="nav-link" id="pills-bagaimana-tab" data-bs-toggle="pill" data-bs-target="#pills-bagaimana" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" disabled>Bagaimana</button>
+                                    <button class="nav-link" id="pills-bagaimana-tab" data-bs-toggle="pill" data-bs-target="#pills-bagaimana" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Bagaimana</button>
                                 </li>
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
@@ -203,7 +203,8 @@
 
                                         <div class="mt-3">
                                             <b>Melalui media apa dapat dihubungi ? <span class="text-danger">*</span></b>
-                                            
+                                            <br>
+                                            <small class="text-danger" id="err_media_call"></small>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="telp" id="telpcheck" name="media_call[]">
                                                 <label class="form-check-label" for="telpcheck">
@@ -243,7 +244,8 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="pills-apa" role="tabpanel" aria-labelledby="pills-apa-tab" tabindex="0">
-                                    <b>1. Jenis laporan yang ingin anda sampaikan</b>
+                                    <form action="<?= base_url('home/check_form_2') ?>" id="form2" method="post">
+                                    <b>1. Jenis laporan yang ingin anda sampaikan <span class="text-danger">*</span></b>
                                     <div class="container">
                                         <div class="row">
                                             <?php
@@ -258,30 +260,48 @@
                                                 </label>
                                             </div>
                                             <?php } ?>
+
+                                            <div class="col-12 form-check">
+                                                <input class="form-check-input" type="checkbox" name="laporan[]" value="di luar cangkupan" id="luar_cangkupan">
+                                                <label class="form-check-label" for="luar_cangkupan">
+                                                    Di luar cangkupan
+                                                </label>
+                                            </div>
+
+                                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-none" id="form-other-laporan">
+                                                <label>Silahkan Tuliskan</label>
+                                                <input type="text" name="other_laporan" id="other_laporan" class="form-control">
+                                            </div>
+                                            <small class="text-danger" id="err_laporan"></small>
+
                                         </div>
                                     </div>
 
+                                    <br>
                                     <b>2. Apa yang terjadi?</b>
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-12">
                                                 <small class="text-muted">Harap di isi</small>
-                                                <textarea name="desc" id="desc" cols="30" rows="10" class="form-control"></textarea>
+                                                <textarea name="apa_yang_terjadi" required id="apa_yang_terjadi" cols="30" rows="10" class="form-control"></textarea>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <br>
                                     <b>3. Apa yang membuat Anda menyadari kasus ini?</b>
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-12">
-                                                <textarea name="what" id="what" cols="30" rows="10" class="form-control"></textarea>
+                                                <textarea name="penyadaran_kasus" id="penyadaran_kasus" cols="30" rows="10" class="form-control"></textarea>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <button class="btn btn-sm btn-warning mt-3">Selanjutnya</button>
-
+                                    <hr>
+                                    <button class="btn btn-sm btn-warning mt-3 mb-3" id="next-2">Selanjutnya</button>
+                                    <br>
+                                    <small class="text-danger" id="err_form2"></small>
+                                    </form>
                                 </div>
 
                                 <div class="tab-pane fade" id="pills-kapan" role="tabpanel" aria-labelledby="pills-kapan-tab" tabindex="0">
@@ -962,6 +982,8 @@
             </div>
         </div>
     </footer>
+
+    <!-- script prepare form -->
 <script>
 
     $(document).ready(function(){
@@ -970,15 +992,16 @@
             $(this).datepicker();
         })
 
-        $('input:checkbox[name="media_call"]').change(function(){
-            if($(this).is(':checked') && $(this).val() == 'lain-lain'){
+        $('#othercheck').on('change', function(){
+            if($(this).is(':checked')){
                 $('#lain_lain').removeClass('d-none');
                 $('#lain_lain_form').attr('required', true);
             } else {
                 $('#lain_lain').addClass('d-none');
                 $('#lain_lain_form').removeAttr('required');
+                $('#lain_lain_form').val('');
             }
-        });
+        })
 
         $(document).on('click', '.new-form', function(){
             let newForm = $('.copy-form').html();
@@ -1096,15 +1119,24 @@
 
 </script>
 
+    <!-- script form 1 -->
 <script>
     $('#reporting1').submit(function(e){
         e.preventDefault();
         let status_pelapor = $('input[name="anonym"]:checked').val();
+        let media_call = $('input[name="media_call[]"]:checked').val();
+
         if(status_pelapor == null){
             $('#err_status').html('Harap pilih salah satu')
         } else {
             $('#err_status').html('')
-            form_1();
+            if(media_call == null){
+                $('#err_media_call').html('Harap pilih min 1')
+            } else {
+                $('#err_media_call').html('')
+                form_1();
+            }
+            
         }
     });
 
@@ -1147,6 +1179,21 @@
                     $('#err_email').html('')
                     $('#err_nik').html('')
                     $('#err_telp').html('')
+
+                    $('#pills-apa-tab').addClass('active');
+                    $('#pills-apa-tab').attr('aria-selected', 'true');
+                    $('#pills-apa-tab').removeAttr('disabled');
+                    $('#pills-apa-tab').removeAttr('tabindex');
+                    $('#pills-apa').addClass('active');
+                    $('#pills-apa').addClass('show');
+
+
+                    $('#pills-identitas-tab').removeClass('active');
+                    $('#pills-identitas-tab').attr('aria-selected', 'false');
+                    $('#pills-identitas-tab').removeAttr('tabindex', '-1');
+                    $('#pills-identitas').removeClass('active');
+                    $('#pills-identitas').removeClass('show');
+
                 }
             },
             error: function(xhr){
@@ -1165,6 +1212,78 @@
         })
     }
 </script>
+
+<!-- script form 2 -->
+<script>
+    $('#luar_cangkupan').change(function(){
+        if($(this).is(':checked')){
+            $('#form-other-laporan').removeClass('d-none');
+            $('#other_laporan').attr('required', true);
+        } else {
+            $('#form-other-laporan').addClass('d-none');
+            $('#other_laporan').val('');
+            $('#other_laporan').removeAttr('required');
+        }
+    });
+
+    $('#form2').submit(function(e){
+        e.preventDefault();
+        let laporan = $('input[name="laporan[]"]:checked').val();
+        if(laporan == null){
+            $('#err_laporan').html('Harap pilih min 1');
+        } else {
+            $('#err_laporan').html('');
+            form_2();
+        }
+    });
+
+    function form_2(){
+        $.ajax({
+            url: $('#form2').attr('action'),
+            data: $('#form2').serialize(),
+            type: 'POST',
+            dataType: 'JSON',
+            success: function(d){
+                if(d.success == true){
+                    $('#err_form2').html('');
+
+                    $('#pills-kapan-tab').addClass('active');
+                    $('#pills-kapan-tab').attr('aria-selected', 'true');
+                    $('#pills-kapan-tab').removeAttr('disabled');
+                    $('#pills-kapan-tab').removeAttr('tabindex');
+                    $('#pills-kapan').addClass('active');
+                    $('#pills-kapan').addClass('show');
+
+
+                    $('#pills-apa-tab').removeClass('active');
+                    $('#pills-apa-tab').attr('aria-selected', 'false');
+                    $('#pills-apa-tab').removeAttr('tabindex', '-1');
+                    $('#pills-apa').removeClass('active');
+                    $('#pills-apa').removeClass('show');
+
+                } else {
+                    $('#err_form2').html(d.msg);
+                }
+            },
+            error: function(xhr){
+                if(xhr.status == 0){
+                    $('#err_form2').html('Error: No internet access');
+                } else if(xhr.status == 403){
+                    $('#err_form2').html('Error: Access denied');
+                } else if(xhr.status == 404){
+                    $('#err_form2').html('Error: Page not found');
+                } else if(xhr.status == 500){
+                    $('#err_form2').html('Error: Internal server error');
+                } else {
+                    $('#err_form2').html('Error: Unknow error');
+                }
+            }
+        });
+    }
+
+    
+</script>
+
 
 </body>
 </html>
