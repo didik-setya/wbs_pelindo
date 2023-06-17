@@ -86,6 +86,7 @@ class Master extends CI_Controller {
                 <b>Password: </b>  '.$pass.'
             </p>';
         $data['content'] = $message;
+        
         $template = $this->load->view('user/template_email', $data, true);
         //send email
         $send = $this->m->send_mail($subject, $template);

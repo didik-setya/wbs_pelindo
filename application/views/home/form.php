@@ -19,6 +19,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         .nav-link {
@@ -110,16 +111,16 @@
                                     <button class="nav-link active" id="pills-identitas-tab" data-bs-toggle="pill" data-bs-target="#pills-identitas" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Identitas</button>
                                 </li>
                                 <li class="nav-item mx-1" role="presentation">
-                                    <button class="nav-link" id="pills-apa-tab" data-bs-toggle="pill" data-bs-target="#pills-apa" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Apa</button>
+                                    <button class="nav-link" id="pills-apa-tab" data-bs-toggle="pill" data-bs-target="#pills-apa" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" disabled>Apa</button>
                                 </li>
                                 <li class="nav-item mx-1" role="presentation">
-                                    <button class="nav-link" id="pills-kapan-tab" data-bs-toggle="pill" data-bs-target="#pills-kapan" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Kapan dan Dimana</button>
+                                    <button class="nav-link" id="pills-kapan-tab" data-bs-toggle="pill" data-bs-target="#pills-kapan" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" disabled>Kapan dan Dimana</button>
                                 </li>
                                 <li class="nav-item mx-1" role="presentation">
-                                    <button class="nav-link" id="pills-siapa-tab" data-bs-toggle="pill" data-bs-target="#pills-siapa" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Siapa</button>
+                                    <button class="nav-link" id="pills-siapa-tab" data-bs-toggle="pill" data-bs-target="#pills-siapa" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" disabled>Siapa</button>
                                 </li>
                                 <li class="nav-item mx-1" role="presentation">
-                                    <button class="nav-link" id="pills-bagaimana-tab" data-bs-toggle="pill" data-bs-target="#pills-bagaimana" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Bagaimana</button>
+                                    <button class="nav-link" id="pills-bagaimana-tab" data-bs-toggle="pill" data-bs-target="#pills-bagaimana" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" disabled>Bagaimana</button>
                                 </li>
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
@@ -298,32 +299,33 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <button class="btn btn-sm btn-warning mt-3 mb-3" id="next-2">Selanjutnya</button>
+                                    <button class="btn btn-sm btn-warning mt-3 mb-3" type="submit" id="next-2">Selanjutnya</button>
                                     <br>
                                     <small class="text-danger" id="err_form2"></small>
                                     </form>
                                 </div>
 
                                 <div class="tab-pane fade" id="pills-kapan" role="tabpanel" aria-labelledby="pills-kapan-tab" tabindex="0">
-                                    <b>4. Kapan dan dimana kasus ini terjadi?</b>
+                                    <form action="<?= base_url('home/check_form_3'); ?>" id="form3" method="post">
+                                    <b>4. Kapan dan dimana kasus ini terjadi? <span class="text-danger">*</span></b>
 
                                     <div class="mb-3 container all-multiple-form">
                                         <div class="row multiple-form" style="align-items: center;">
                                             <div class="col-12 col-sm-6 col-md-3 col-lg-2 mt-3">
                                                 <b>Tanggal</b>
-                                                <input type="text" name="tgl" class="form-control datepicker">
+                                                <input type="text" name="tgl_terjadi[]" class="form-control datepicker" required>
                                             </div>
                                             <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3">
                                                 <b>Provinsi</b>
-                                                <input type="text" name="prov" id="prov" class="form-control">
+                                                <input type="text" name="prov_terjadi[]" class="form-control" required>
                                             </div>
                                             <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3">
                                                 <b>Kota</b>
-                                                <input type="text" name="kota" id="kota" class="form-control">
+                                                <input type="text" name="kota_terjadi[]" class="form-control" required>
                                             </div>
-                                            <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3 mb-3">
+                                            <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3">
                                                 <b>Kecamatan/kelurahan</b>
-                                                <input type="text" name="kec" id="kec" class="form-control">
+                                                <input type="text" name="kec_terjadi[]" class="form-control" required>
                                             </div>
 
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-3 act-multiple-form">
@@ -336,19 +338,19 @@
                                         <div class="row multiple-form" style="align-items: center;">
                                             <div class="col-12 col-sm-6 col-md-3 col-lg-2 mt-3">
                                                 <b>Tanggal</b>
-                                                <input type="text" name="tgl" class="form-control datepicker">
+                                                <input type="text" name="tgl_terjadi[]" class="form-control datepicker">
                                             </div>
                                             <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3">
                                                 <b>Provinsi</b>
-                                                <input type="text" name="prov" id="prov" class="form-control">
+                                                <input type="text" name="prov_terjadi[]" class="form-control">
                                             </div>
                                             <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3">
                                                 <b>Kota</b>
-                                                <input type="text" name="kota" id="kota" class="form-control">
+                                                <input type="text" name="kota_terjadi[]" class="form-control">
                                             </div>
-                                            <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3 mb-3">
+                                            <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3">
                                                 <b>Kecamatan/kelurahan</b>
-                                                <input type="text" name="kec" id="kec" class="form-control">
+                                                <input type="text" name="kec_terjadi[]" class="form-control">
                                             </div>
 
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-3 act-multiple-form">
@@ -363,12 +365,14 @@
                                         <div class="mb-3 container">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <textarea name="lama" id="lama" class="form-control" cols="30" rows="5"></textarea>
+                                                    <textarea name="lama_kasus_berlangsung" id="lama" class="form-control" cols="30" rows="5"></textarea>
                                                 </div>
                                             </div>
                                         </div>
 
-                                    <b>6. Apakah kasus ini pernah terjadi sebelumnya?</b>
+                                    <b>6. Apakah kasus ini pernah terjadi sebelumnya? <span class="text-danger">*</span></b>
+                                    <br>
+                                    <small class="text-danger" id="err_kasus_before"></small>
                                         <div class="container">
                                             <div class="row">
                                                 <div class="form-check col-12">
@@ -396,19 +400,19 @@
                                             <div class="row multiple-form-other" style="align-items: center;">
                                                 <div class="col-12 col-sm-6 col-md-3 col-lg-2 mt-3">
                                                     <b>Tanggal</b>
-                                                    <input type="text" name="tgl" class="form-control datepicker">
+                                                    <input type="text" name="tgl_terjadi_before[]" class="form-control datepicker tgl-before">
                                                 </div>
                                                 <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3">
                                                     <b>Provinsi</b>
-                                                    <input type="text" name="prov" class="form-control">
+                                                    <input type="text" name="prov_terjadi_before[]" class="form-control prov-before">
                                                 </div>
                                                 <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3">
                                                     <b>Kota</b>
-                                                    <input type="text" name="kota" class="form-control">
+                                                    <input type="text" name="kota_terjadi_before[]" class="form-control kota-before">
                                                 </div>
                                                 <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3 mb-3">
                                                     <b>Kecamatan/kelurahan</b>
-                                                    <input type="text" name="kec" class="form-control">
+                                                    <input type="text" name="kec_terjadi_before[]" class="form-control kec-before">
                                                 </div>
 
                                                 <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-3 act-multiple-form">
@@ -417,24 +421,25 @@
                                             </div>
                                             </div>
 
+                                            <hr>
 
                                             <div class="copy-form-other d-none">
                                                 <div class="row multiple-form-other" style="align-items: center;">
                                                     <div class="col-12 col-sm-6 col-md-3 col-lg-2 mt-3">
                                                         <b>Tanggal</b>
-                                                        <input type="text" name="tgl" class="form-control datepicker">
+                                                        <input type="text" name="tgl_terjadi_before[]" class="form-control datepicker">
                                                     </div>
                                                     <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3">
                                                         <b>Provinsi</b>
-                                                        <input type="text" name="prov" class="form-control">
+                                                        <input type="text" name="prov_terjadi_before[]" class="form-control">
                                                     </div>
                                                     <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3">
                                                         <b>Kota</b>
-                                                        <input type="text" name="kota" class="form-control">
+                                                        <input type="text" name="kota_terjadi_before[]" class="form-control">
                                                     </div>
                                                     <div class="col-12 col-sm-6 col-md-3 col-lg-3 mt-3 mb-3">
                                                         <b>Kecamatan/kelurahan</b>
-                                                        <input type="text" name="kec" class="form-control">
+                                                        <input type="text" name="kec_terjadi_before[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-3 act-multiple-form">
@@ -446,22 +451,26 @@
 
                                         </div>
 
-                                        <button class="btn btn-sm btn-warning mt-3">Selanjutnya</button>
-                                    
+                                        <button class="btn btn-sm btn-warning mt-3 mb-3" id="next-3" type="submit">Selanjutnya</button>
+                                        <br>
+                                        <small class="text-danger" id="err_form3"></small>
+                                    </form>
 
                                 </div>
 
                                 <div class="tab-pane fade" id="pills-siapa" role="tabpanel" aria-labelledby="pills-siapa-tab" tabindex="0">
+
+                                    <form action="<?= base_url('home/check_form_4') ?>" id="form4" method="post">
                                     <b>7. Informasi yang anda miliki, apakah itu dari pihak pertama atau pihak kedua ?</b>
                                     <div class="container">
                                         <div class="row">
-                                            <div class="form-check col-sm-12 col-12 col-md-6 col-lg-6">
+                                            <div class="form-check col-sm-12 col-12 col-md-12 col-lg-12">
                                                 <input class="form-check-input" type="radio" name="informan" id="informan_pertama" value="pihak pertama">
                                                 <label class="form-check-label" for="informan_pertama">
                                                     Pihak Pertama
                                                 </label>
                                             </div>
-                                            <div class="form-check col-sm-12 col-12 col-md-6 col-lg-6">
+                                            <div class="form-check col-sm-12 col-12 col-md-12 col-lg-12">
                                                 <input class="form-check-input" type="radio" name="informan" id="informan_kedua" value="pihak kedua">
                                                 <label class="form-check-label" for="informan_kedua">
                                                     Pihak Kedua
@@ -474,7 +483,8 @@
                                         <div class="row multiple-form" style="align-items: center">
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-2">
                                                 <label>Panggilan</label>
-                                                <select name="panggilan" class="form-control">
+                                                <select name="panggilan_informan[]" class="form-control">
+                                                    <option value=""></option>
                                                     <option value="Mr">Mr</option>
                                                     <option value="Mrs">Mrs</option>
                                                 </select>
@@ -482,12 +492,12 @@
 
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-3">
                                                 <label>Nama</label>
-                                                <input type="text" name="nama_informan" class="form-control">
+                                                <input type="text" name="nama_informan[]" class="form-control">
                                             </div>
 
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-3">
                                                 <label>Divisi / Posisi</label>
-                                                <input type="text" name="divis_informan" class="form-control">
+                                                <input type="text" name="divisi_informan[]" class="form-control">
                                             </div>
 
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-3 act-multiple-form">
@@ -500,7 +510,8 @@
                                         <div class="row multiple-form" style="align-items: center">
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-2 mt-3">
                                                 <label>Panggilan</label>
-                                                <select name="panggilan" class="form-control">
+                                                <select name="panggilan_informan[]" class="form-control">
+                                                    <option value=""></option>
                                                     <option value="Mr">Mr</option>
                                                     <option value="Mrs">Mrs</option>
                                                 </select>
@@ -508,12 +519,12 @@
 
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-3">
                                                 <label>Nama</label>
-                                                <input type="text" name="nama_informan" class="form-control">
+                                                <input type="text" name="nama_informan[]" class="form-control">
                                             </div>
 
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-3">
                                                 <label>Divisi / Posisi</label>
-                                                <input type="text" name="divis_informan" class="form-control">
+                                                <input type="text" name="divisi_informan[]" class="form-control">
                                             </div>
 
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-3 act-multiple-form">
@@ -525,6 +536,7 @@
 
                                     </div>
 
+                                    <br>
                                     <b>8. Unit kerja apa yang ingin Anda laporkan?</b>
                                     <div class="container">
                                         <div class="row">
@@ -534,6 +546,7 @@
                                         </div>
                                     </div>
 
+                                    <br>
                                     <b>9. Siapa saja orang yang terlibat?</b>
                                     <div class="container">
                                         <div class="row">
@@ -542,7 +555,8 @@
                                                 <div class="row multiple-form" style="align-items: center">
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 mt-3">
                                                         <label>Panggilan</label>
-                                                        <select name="panggilan" class="form-control">
+                                                        <select name="panggilan_report[]" class="form-control">
+                                                            <option value=""></option>
                                                             <option value="Mr">Mr</option>
                                                             <option value="Mrs">Mrs</option>
                                                         </select>
@@ -550,12 +564,12 @@
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-3">
                                                         <label>Nama</label>
-                                                        <input type="text" name="nama_informan" class="form-control">
+                                                        <input type="text" name="nama_report[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-3">
                                                         <label>Divisi / Posisi</label>
-                                                        <input type="text" name="divis_informan" class="form-control">
+                                                        <input type="text" name="divisi_report[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-3 act-multiple-form">
@@ -568,7 +582,8 @@
                                                 <div class="row multiple-form" style="align-items: center">
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 mt-3">
                                                         <label>Panggilan</label>
-                                                        <select name="panggilan" class="form-control">
+                                                        <select name="panggilan_report[]" class="form-control">
+                                                            <option value=""></option>
                                                             <option value="Mr">Mr</option>
                                                             <option value="Mrs">Mrs</option>
                                                         </select>
@@ -576,12 +591,12 @@
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-3">
                                                         <label>Nama</label>
-                                                        <input type="text" name="nama_informan" class="form-control">
+                                                        <input type="text" name="nama_report[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-3">
                                                         <label>Divisi / Posisi</label>
-                                                        <input type="text" name="divis_informan" class="form-control">
+                                                        <input type="text" name="divisi_report[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-3 act-multiple-form">
@@ -595,25 +610,26 @@
                                         </div>
                                     </div>
 
+                                    <br>
                                     <b>10. Apakah ada atasan atau pihak manajemen yang terlibat?</b>
                                     <div class="container">
                                         <div class="row">
 
-                                            <div class="form-check col-12 col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-check col-12 col-sm-12">
                                                 <input class="form-check-input" type="radio" name="manajemen_terlibat" id="flexRadioDefault" value="ya">
                                                 <label class="form-check-label" for="flexRadioDefault">
                                                     Ya
                                                 </label>
                                             </div>
 
-                                            <div class="form-check col-12 col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-check col-12 col-sm-12">
                                                 <input class="form-check-input" type="radio" name="manajemen_terlibat" id="flexRadioDefault1" value="tidak">
                                                 <label class="form-check-label" for="flexRadioDefault1">
                                                     Tidak
                                                 </label>
                                             </div>
 
-                                            <div class="form-check col-12 col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-check col-12 col-sm-12">
                                                 <input class="form-check-input" type="radio" name="manajemen_terlibat" id="flexRadioDefault2" value="tidak tahu">
                                                 <label class="form-check-label" for="flexRadioDefault2">
                                                     Tidak Tahu
@@ -622,24 +638,24 @@
 
                                             <div class="col-12 d-none" id="desc_report">
                                                 <label>Tolong Jelaskan</label>
-                                                <textarea name="desc_report" cols="30" rows="5" class="form-control"></textarea>
+                                                <textarea name="decs_pihak_management_terlibat" cols="30" rows="5" class="form-control"></textarea>
                                             </div>
 
                                         </div>
                                     </div>
 
+                                    <br>
                                     <b>11. Apakah anda pernah melaporkan sebelumnya kasus ini ke atasan, pihak manajemen, atau orang lain?</b>
-
                                     <div class="container">
                                         <div class="row">
-                                            <div class="form-check col-12 col-sm-12 col-md-6 col-lg-6">
+                                            <div class="form-check col-12 col-sm-12">
                                                 <input class="form-check-input" type="radio" name="report_before" value="ya" id="befor_report_1">
                                                 <label class="form-check-label" for="befor_report_1">
                                                     Ya
                                                 </label>
                                             </div>
 
-                                            <div class="form-check col-12 col-sm-12 col-md-6 col-lg-6">
+                                            <div class="form-check col-12 col-sm-12">
                                                 <input class="form-check-input" type="radio" name="report_before" value="tidak" id="befor_report_2">
                                                 <label class="form-check-label" for="befor_report_2">
                                                     Tidak
@@ -652,7 +668,8 @@
                                                 <div class="row multiple-form" style="align-items: center">
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 mt-2">
                                                         <label>Panggilan</label>
-                                                        <select name="panggilan" class="form-control">
+                                                        <select name="panggilan_report_before[]" class="form-control">
+                                                            <option value=""></option>
                                                             <option value="Mr">Mr</option>
                                                             <option value="Mrs">Mrs</option>
                                                         </select>
@@ -660,12 +677,12 @@
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-2">
                                                         <label>Nama</label>
-                                                        <input type="text" name="nama_informan" class="form-control">
+                                                        <input type="text" name="nama_report_before[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-2">
                                                         <label>Divisi / Posisi</label>
-                                                        <input type="text" name="divis_informan" class="form-control">
+                                                        <input type="text" name="divisi_report_before[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-2 act-multiple-form">
@@ -678,7 +695,8 @@
                                                 <div class="row multiple-form" style="align-items: center">
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 mt-2">
                                                         <label>Panggilan</label>
-                                                        <select name="panggilan" class="form-control">
+                                                        <select name="panggilan_report_before[]" class="form-control">
+                                                            <option value=""></option>
                                                             <option value="Mr">Mr</option>
                                                             <option value="Mrs">Mrs</option>
                                                         </select>
@@ -686,12 +704,12 @@
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-2">
                                                         <label>Nama</label>
-                                                        <input type="text" name="nama_informan" class="form-control">
+                                                        <input type="text" name="nama_report_before[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-2">
                                                         <label>Divisi / Posisi</label>
-                                                        <input type="text" name="divis_informan" class="form-control">
+                                                        <input type="text" name="divisi_report_before[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-2 act-multiple-form">
@@ -705,17 +723,18 @@
                                         </div>
                                     </div>
 
+                                    <br>
                                     <b>12. Selain anda, siapa yang menyadari adanya kasus ini?</b>
                                     <div class="container">
                                         <div class="row">
-                                            <div class="form-check col-12 col-sm-12 col-md-6 col-lg-6">
+                                            <div class="form-check col-12 col-sm-12">
                                                 <input class="form-check-input" type="radio" name="another_people" value="1" id="another_people1">
                                                 <label class="form-check-label" for="another_people1">
                                                     Hanya Saya
                                                 </label>
                                             </div>
 
-                                            <div class="form-check col-12 col-sm-12 col-md-6 col-lg-6">
+                                            <div class="form-check col-12 col-sm-12">
                                                 <input class="form-check-input" type="radio" name="another_people" value="2" id="another_people2">
                                                 <label class="form-check-label" for="another_people2">
                                                     Ada pihak lain selain saya
@@ -728,7 +747,8 @@
                                                 <div class="row multiple-form" style="align-items: center">
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 mt-2">
                                                         <label>Panggilan</label>
-                                                        <select name="panggilan" class="form-control">
+                                                        <select name="panggilan_another_people[]" class="form-control">
+                                                            <option value=""></option>
                                                             <option value="Mr">Mr</option>
                                                             <option value="Mrs">Mrs</option>
                                                         </select>
@@ -736,12 +756,12 @@
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-2">
                                                         <label>Nama</label>
-                                                        <input type="text" name="nama_informan" class="form-control">
+                                                        <input type="text" name="nama_another_people[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-2">
                                                         <label>Divisi / Posisi</label>
-                                                        <input type="text" name="divis_informan" class="form-control">
+                                                        <input type="text" name="divisi_another_people[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-2 act-multiple-form">
@@ -754,7 +774,8 @@
                                                 <div class="row multiple-form" style="align-items: center">
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 mt-2">
                                                         <label>Panggilan</label>
-                                                        <select name="panggilan" class="form-control">
+                                                        <select name="panggilan_another_people[]" class="form-control">
+                                                            <option value=""></option>
                                                             <option value="Mr">Mr</option>
                                                             <option value="Mrs">Mrs</option>
                                                         </select>
@@ -762,12 +783,12 @@
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-2">
                                                         <label>Nama</label>
-                                                        <input type="text" name="nama_informan" class="form-control">
+                                                        <input type="text" name="nama_another_people[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-2">
                                                         <label>Divisi / Posisi</label>
-                                                        <input type="text" name="divis_informan" class="form-control">
+                                                        <input type="text" name="divisi_another_people[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-2 act-multiple-form">
@@ -781,23 +802,23 @@
                                         </div>
                                     </div>
                                     
-
+                                    <br>
                                     <b>13. Apakah ada saksi-saksi dalam kasus ini?</b>
                                     <div class="container">
                                         <div class="row">
-                                            <div class="form-check col-12 col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-check col-12 col-sm-12">
                                                 <input class="form-check-input" type="radio" value="ya" name="saksi" id="saksi1">
                                                 <label class="form-check-label" for="saksi1">
                                                     Ya
                                                 </label>
                                             </div>
-                                            <div class="form-check col-12 col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-check col-12 col-sm-12">
                                                 <input class="form-check-input" type="radio" value="tidak" name="saksi" id="saksi2">
                                                 <label class="form-check-label" for="saksi2">
                                                     Tidak
                                                 </label>
                                             </div>
-                                            <div class="form-check col-12 col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-check col-12 col-sm-12">
                                                 <input class="form-check-input" type="radio" value="tidak tahu" name="saksi" id="saksi3">
                                                 <label class="form-check-label" for="saksi3">
                                                     Tidak Tahu
@@ -810,7 +831,8 @@
                                                 <div class="row multiple-form" style="align-items: center">
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 mt-2">
                                                         <label>Panggilan</label>
-                                                        <select name="panggilan" class="form-control">
+                                                        <select name="panggilan_saksi[]" class="form-control">
+                                                            <option value=""></option>
                                                             <option value="Mr">Mr</option>
                                                             <option value="Mrs">Mrs</option>
                                                         </select>
@@ -818,12 +840,12 @@
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-2">
                                                         <label>Nama</label>
-                                                        <input type="text" name="nama_informan" class="form-control">
+                                                        <input type="text" name="nama_saksi[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-2">
                                                         <label>Divisi / Posisi</label>
-                                                        <input type="text" name="divis_informan" class="form-control">
+                                                        <input type="text" name="divisi_saksi[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-2 act-multiple-form">
@@ -836,7 +858,8 @@
                                                 <div class="row multiple-form" style="align-items: center">
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 mt-2">
                                                         <label>Panggilan</label>
-                                                        <select name="panggilan" class="form-control">
+                                                        <select name="panggilan_saksi[]" class="form-control">
+                                                            <option value=""></option>
                                                             <option value="Mr">Mr</option>
                                                             <option value="Mrs">Mrs</option>
                                                         </select>
@@ -844,12 +867,12 @@
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-5 mt-2">
                                                         <label>Nama</label>
-                                                        <input type="text" name="nama_informan" class="form-control">
+                                                        <input type="text" name="nama_saksi[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-2">
                                                         <label>Divisi / Posisi</label>
-                                                        <input type="text" name="divis_informan" class="form-control">
+                                                        <input type="text" name="divisi_saksi[]" class="form-control">
                                                     </div>
 
                                                     <div class="col-12 col-sm-12 col-md-12 col-lg-1 mt-2 act-multiple-form">
@@ -863,17 +886,19 @@
                                         </div>
                                     </div>
 
-                                    
-
+                                    <hr>
+                                    <button class="btn btn-sm btn-warning my-3" type="submit" id="next-4">Selanjutnya</button>
+                                    </form>
                                 </div>
 
                                 <div class="tab-pane fade" id="pills-bagaimana" role="tabpanel" aria-labelledby="pills-bagaimana-tab" tabindex="0">
-                                                
+                                    <form action="<?= base_url('home/check_form_5') ?>" id="from5" method="post">
+                                
                                     <b>14. Apakah ada pihak-pihak yang berusaha untuk menutupi kasus ini? Bagaimana ?</b>
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-12">
-                                                <textarea name="" id="" class="form-control" cols="30" rows="5"></textarea>
+                                                <textarea name="pihak_penutupan_kasus" id="pihak_penutupan_kasus" class="form-control" cols="30" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -883,7 +908,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-12">
-                                                <textarea name="" id="" class="form-control" cols="30" rows="5"></textarea>
+                                                <textarea name="hal_berkaitan_kasus" id="hal_berkaitan_kasus" class="form-control" cols="30" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -893,7 +918,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-12">
-                                                <textarea name="" id="" class="form-control" cols="30" rows="5"></textarea>
+                                                <textarea name="penyampaikan_kasus" id="penyampaikan_kasus" class="form-control" cols="30" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -918,7 +943,7 @@
 
                                             <div class="col-12 mt-3 penjelasan-bukti d-none">
                                                 <label>Jelaskan</label>
-                                                <textarea name="" id="" class="form-control" cols="30" rows="5"></textarea>
+                                                <textarea name="tentang_bukti" id="tentang_bukti" class="form-control" cols="30" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -928,10 +953,16 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-12">
-                                                <input type="file" name="" id="" multiple="multiple" class="form-control">
+                                                <input type="file" required name="file_bukti[]" id="file_bukti" multiple="multiple" class="form-control">
+                                                <small class="text-danger">file bisa berupa foto, video, dan dokumen</small>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <hr>
+                                    <button class="btn btn-sm btn-success my-3" type="submit" id="next-last">Kirim Laporan</button>
+                                    <small class="text-danger" id="err_form5"></small>
+                                    </form>
 
                                 </div>
                             </div>
@@ -989,7 +1020,9 @@
     $(document).ready(function(){
         
         $(document).on('focus', '.datepicker', function(){
-            $(this).datepicker();
+            $(this).datepicker({
+                dateFormat: "dd-mm-yy"
+            });
         })
 
         $('#othercheck').on('change', function(){
@@ -1024,8 +1057,18 @@
         $('input:radio[name="kasus_before"]').change(function(){
             if($(this).is(':checked') && $(this).val() == 'ya'){
                 $('.form-other').removeClass('d-none');
+
+                $('.tgl-before').attr('required', true);
+                $('.prov-before').attr('required', true);
+                $('.kota-before').attr('required', true);
+                $('.kec-before').attr('required', true);
             } else {
                 $('.form-other').addClass('d-none');
+
+                $('.tgl-before').removeAttr('required');
+                $('.prov-before').removeAttr('required');
+                $('.kota-before').removeAttr('required');
+                $('.kec-before').removeAttr('required');
             }
         })
 
@@ -1041,8 +1084,14 @@
         $('input:radio[name="informan"]').change(function(){
             if($(this).is(':checked') && $(this).val() == 'pihak kedua'){
                 $('.informan1').removeClass('d-none');
+                $('input[name="panggilan_informan[]"]').val('');
+                $('input[name="nama_informan[]"]').val('');
+                $('input[name="divisi_informan[]"]').val('');
             } else {
                 $('.informan1').addClass('d-none');
+                $('input[name="panggilan_informan[]"]').val('');
+                $('input[name="nama_informan[]"]').val('');
+                $('input[name="divisi_informan[]"]').val('');
             }
         });
 
@@ -1063,6 +1112,21 @@
             }
         });
 
+        $('input:radio[name="report_before"]').change(function(){
+            if($(this).is(':checked') && $(this).val() == 'ya'){
+                $('.people-report-before').removeClass('d-none');
+                $('input[name="panggilan_report_before[]"]').val('');
+                $('input[name="nama_report_before[]"]').val('');
+                $('input[name="divisi_report_before[]"]').val('');
+
+            } else {
+                $('.people-report-before').addClass('d-none');
+                $('input[name="panggilan_report_before[]"]').val('');
+                $('input[name="nama_report_before[]"]').val('');
+                $('input[name="divisi_report_before[]"]').val('');
+            }
+        });
+
         $(document).on('click', '.add-report-before', function(){
             let newForm = $('.copy-people-report-before').html();
             $('.people-report-before').append(newForm);
@@ -1075,8 +1139,17 @@
         $('input:radio[name="another_people"]').change(function(){
             if($(this).is(':checked') && $(this).val() == 2) {
                 $('#another-people').removeClass('d-none');
+
+                $('input[name="panggilan_another_people[]"]').val('');
+                $('input[name="nama_another_people[]"]').val('');
+                $('input[name="divisi_another_people[]"]').val('');
+
             } else {
                 $('#another-people').addClass('d-none');
+
+                $('input[name="panggilan_another_people[]"]').val('');
+                $('input[name="nama_another_people[]"]').val('');
+                $('input[name="divisi_another_people[]"]').val('');
             }
         })
 
@@ -1092,8 +1165,16 @@
         $('input:radio[name="saksi"]').change(function(){
             if($(this).is(':checked') && $(this).val() == 'ya') {
                 $('#saksi').removeClass('d-none');
+
+                $('input[name="panggilan_saksi[]"]').val('');
+                $('input[name="nama_saksi[]"]').val('');
+                $('input[name="divisi_saksi[]"]').val('');
             } else {
                 $('#saksi').addClass('d-none');
+
+                $('input[name="panggilan_saksi[]"]').val('');
+                $('input[name="nama_saksi[]"]').val('');
+                $('input[name="divisi_saksi[]"]').val('');
             }
         })
 
@@ -1284,6 +1365,188 @@
     
 </script>
 
+<!-- script form 3 -->
+<script>
+    $('#form3').submit(function(e){
+        e.preventDefault();
+
+        let kasus = $('input[name="kasus_before"]:checked').val();
+        if(kasus == null){
+            $('#err_kasus_before').html('Harap pilih salah satu')
+        } else {
+            $('#err_kasus_before').html('');
+            form_3();
+        }
+    });
+
+
+    function form_3(){
+        $.ajax({
+            url: $('#form3').attr('action'),
+            data: $('#form3').serialize(),
+            type: 'POST',
+            dataType: 'JSON',
+            success: function(d){
+                if(d.success == true){
+                    $('#err_form3').html('');
+
+                    $('#pills-siapa-tab').addClass('active');
+                    $('#pills-siapa-tab').attr('aria-selected', 'true');
+                    $('#pills-siapa-tab').removeAttr('disabled');
+                    $('#pills-siapa-tab').removeAttr('tabindex');
+                    $('#pills-siapa').addClass('active');
+                    $('#pills-siapa').addClass('show');
+
+
+                    $('#pills-kapan-tab').removeClass('active');
+                    $('#pills-kapan-tab').attr('aria-selected', 'false');
+                    $('#pills-kapan-tab').removeAttr('tabindex', '-1');
+                    $('#pills-kapan').removeClass('active');
+                    $('#pills-kapan').removeClass('show');
+                }
+            },
+            error: function(xhr){
+                if(xhr.status == 0){
+                    $('#err_form3').html('Error: No internet access');
+                } else if(xhr.status == 403){
+                    $('#err_form3').html('Error: Access denied');
+                } else if(xhr.status == 404){
+                    $('#err_form3').html('Error: Page not found');
+                } else if(xhr.status == 500){
+                    $('#err_form3').html('Error: Internal server error');
+                } else {
+                    $('#err_form3').html('Error: Unknow error');
+                }
+            }
+        });
+    }
+
+</script>
+
+<!-- script form 4 -->
+<script>
+    $('#form4').submit(function(e){
+        e.preventDefault();
+
+        $.ajax({
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            type: 'POST',
+            dataType: 'JSON',
+            success: function(d){
+                if(d.success == true){
+                    $('#pills-bagaimana-tab').addClass('active');
+                    $('#pills-bagaimana-tab').attr('aria-selected', 'true');
+                    $('#pills-bagaimana-tab').removeAttr('disabled');
+                    $('#pills-bagaimana-tab').removeAttr('tabindex');
+                    $('#pills-bagaimana').addClass('active');
+                    $('#pills-bagaimana').addClass('show');
+
+
+                    $('#pills-siapa-tab').removeClass('active');
+                    $('#pills-siapa-tab').attr('aria-selected', 'false');
+                    $('#pills-siapa-tab').removeAttr('tabindex', '-1');
+                    $('#pills-siapa').removeClass('active');
+                    $('#pills-siapa').removeClass('show');
+                }
+            }
+        })
+
+    })
+</script>
+
+<!-- script from 5 -->
+<script>
+    $('#xoba').click(function(){
+        
+    })
+
+    $('#from5').submit(function(e){
+        e.preventDefault();
+
+        $('#next-last').attr('disabled', true)
+        $.ajax({
+            url: $(this).attr('action'),
+            data: new FormData(this),
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: false,
+            processData: false,
+            success: function(d){
+                $('#next-last').removeAttr('disabled');
+
+                if(d.success == true){
+                    Swal.fire({
+                        title: 'Success',
+                        text: d.msg,
+                        icon: 'success',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'OK'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '<?= base_url() ?>';
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: d.msg,
+                        icon: 'error',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'OK'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            },
+            error: function(xhr){
+                $('#next-last').removeAttr('disabled');
+                    if(xhr.status === 0){
+                        //no internet connection
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'No internet access',
+                        })
+                    } else if(xhr.status == 403){
+                        //access forbidden
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Access forbidden',
+                        })
+                    } else if(xhr.status == 404){
+                        //page not found
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Page not found',
+                        })
+                    } else if(xhr.status == 500){
+                        //internal server error
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Internal server error',
+                        })
+                    } else {
+                        //unknow error
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Unknow error',
+                        })
+                    }
+                }
+        })
+    });
+</script>
 
 </body>
 </html>

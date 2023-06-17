@@ -32,7 +32,7 @@ class Login extends CI_Controller {
         $email = $this->input->post('email');
         $pass = md5(sha1($this->input->post('password')));
 
-        $user = $this->db->where('email', $email)->or_where('username', $email)->get('pelapor')->row();
+        $user = $this->db->where('email', $email)->get('pelapor')->row();
 
         if($user){
             if($user->pass == $pass){
@@ -63,6 +63,11 @@ class Login extends CI_Controller {
         $output['type'] = 'result';
         $output['token'] = $this->security->get_csrf_hash();
         echo json_encode($output);
+    }
+
+    public function logout(){
+        $this->session->sess_destroy();
+        redirect('login');
     }
 
 }

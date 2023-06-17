@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <title>Document</title>
+    <title>Login | WBS Pelindo</title>
 </head>
 <body style="background: #f0f0f0">
 
@@ -114,22 +114,22 @@
                     }
                 },
                 error: function(xhr){
-                    if(xhr.status === 0){
-                        //no internet connection
-                        toastr["error"]('No internet connection', "Error")
-                    } else if(xhr.status == 403){
-                        //access forbidden
-                        toastr["error"]('Access forbidden', "Error")
-                    } else if(xhr.status == 404){
-                        //page not found
-                        toastr["error"]('Page not found', "Error")
-                    } else if(xhr.status == 500){
-                        //internal server error
-                        toastr["error"]('Internal server error', "Error")
-                    } else {
-                        //unknow error
-                        toastr["error"]('Unknow error', "Error")
-                    }
+                    // if(xhr.status === 0){
+                    //     //no internet connection
+                    //     toastr["error"]('No internet connection', "Error")
+                    // } else if(xhr.status == 403){
+                    //     //access forbidden
+                    //     toastr["error"]('Access forbidden', "Error")
+                    // } else if(xhr.status == 404){
+                    //     //page not found
+                    //     toastr["error"]('Page not found', "Error")
+                    // } else if(xhr.status == 500){
+                    //     //internal server error
+                    //     toastr["error"]('Internal server error', "Error")
+                    // } else {
+                    //     //unknow error
+                    //     toastr["error"]('Unknow error', "Error")
+                    // }
                     undisabled_form();
                 }
             });
