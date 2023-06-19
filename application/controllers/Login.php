@@ -37,8 +37,7 @@ class Login extends CI_Controller {
         if($user){
             if($user->pass == $pass){
                 $params = [
-                    'email' => $email,
-                    'username' => $email,
+                    'email_user' => $user->email,
                 ];
                 $this->session->set_userdata($params);
 

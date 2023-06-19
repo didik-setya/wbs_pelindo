@@ -41,7 +41,7 @@ class Auth extends CI_Controller {
                 if($user->is_active == 1){
 
                     $params = [
-                        'email' => $email,
+                        'email_member' => $email,
                         'status' => $user->is_active,
                         'role' => $user->id_role
                     ];

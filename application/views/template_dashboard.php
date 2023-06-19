@@ -1,3 +1,4 @@
+<?php $user = get_member(); ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
@@ -260,11 +261,12 @@
                   aria-expanded="false"
                 >
                   <img
-                    src="../assets/images/users/1.jpg"
+                    src="<?= base_url('assets/img-user/') . $user->img ?>"
                     alt="user"
                     class="rounded-circle"
                     width="31"
                   />
+                  <?= $user->nama ?>
                 </a>
                 <ul
                   class="dropdown-menu dropdown-menu-end user-dd animated"

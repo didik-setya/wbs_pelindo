@@ -162,6 +162,7 @@ class Master extends CI_Controller {
             "data" => $output,
             "token" => $this->security->get_csrf_hash()
         );
+        
         echo json_encode($list);
     }
 

@@ -31,4 +31,50 @@ class Master_model extends CI_Model {
         }
         return $send;
     }
+
+    public function get_report($id = null){
+        $data = $this->db->where('relation_all', $id)->get('laporan')->row();
+        return $data;
+    }
+
+    public function get_jenis_laporan($id = null){
+        $data = $this->db->where('relation_laporan', $id)->get('jenis_laporan')->result();
+        return $data;
+    }
+
+    public function get_kasus_terjadi($id = null){
+        $data = $this->db->where('relation_laporan', $id)->get('kasus_terjadi')->result();
+        return $data;
+    }
+
+    public function get_kasus_sebelumnya($id = null){
+        $data = $this->db->where('relation_laporan', $id)->get('kasus_sebelumnya')->result();
+        return $data;
+    }
+
+    public function get_informan_pihak_kedua($id){
+        $data = $this->db->where('relation_laporan', $id)->get('sumber_informasi')->result();
+        return $data;
+    }
+
+    public function get_pihak_terlibat($id){
+        $data = $this->db->where('relation_laporan', $id)->get('pihak_terlibat')->result();
+        return $data;
+    }
+
+    public function get_laporan_sebelumnya($id){
+        $data = $this->db->where('relation_laporan', $id)->get('laporan_sebelumnya')->result();
+        return $data;
+    }
+
+    public function get_pihak_lain_menyadari_kasus($id){
+        $data = $this->db->where('relation_laporan', $id)->get('selain_saya')->result();
+        return $data;
+    }
+
+    public function get_saksi($id){
+        $data = $this->db->where('relation_laporan', $id)->get('saksi')->result();
+        return $data;
+    }
+
 }

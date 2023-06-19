@@ -58,3 +58,19 @@ function jenis_laporan(){
     ];
     return $data;
 }
+
+function get_member(){
+    $t = get_instance();
+
+    $email = $t->session->userdata('email_member');
+    $member = $t->db->where('email', $email)->get('member')->row();
+    return $member;
+}
+
+function get_pelapor(){
+    $t = get_instance();
+
+    $email = $t->session->set_userdata('email_user');
+    $user = $t->db->where('email', $email)->get('pelapor')->row();
+    return $user;
+}
