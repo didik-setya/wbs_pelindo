@@ -74,3 +74,19 @@ function get_pelapor(){
     $user = $t->db->where('email', $email)->get('pelapor')->row();
     return $user;
 }
+
+function check_user_login(){
+    $t = get_instance();
+    $email = $t->session->userdata('email_user');
+    if(!$email){
+        redirect('login');
+    }
+}
+
+function check_member_login(){
+    $t = get_instance();
+    $email = $t->session->userdata('email_member');
+    if(!$email){
+        redirect('auth');
+    }
+}

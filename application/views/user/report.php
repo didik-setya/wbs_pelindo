@@ -1,11 +1,3 @@
-<!-- <?php 
-    $relation = $user->media_access;
-    var_dump($relation);
-
-    $data = $this->db->get_where('laporan', ['relation_all' => $relation])->row();
-    var_dump($data);
-
-?> -->
 <div class="row mt-3">
     <div class="col-12">
         <div class="card">

@@ -77,7 +77,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-white bg-white fixed-top " style="box-shadow: 0px 3px 2px #0275bc;">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="<?= base_url() ?>">
                 <img src="<?= base_url('assets/web/') ?>pelindo.png" alt="..." height="40">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,13 +85,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav text-center" style="align-items: center">
-                    <a class="nav-link" href="#">Beranda</a>
-                    <a class="nav-link" href="#">Tentang Pelindo</a>
-                    <a class="nav-link" href="#">Disclaimer</a>
-                    <a class="nav-link" href="#">Mekanisme Pelaporan</a>
-                    <a class="nav-link" href="#">Pelanggaran & Definisi</a>
-                    <a class="nav-link" href="#">Pertanyaan & Jawaban</a>
-                    <a class="nav-link" href="#">Login <i class="fas fa-sign-in-alt"></i></a>
+                    <a class="nav-link" href="<?= base_url(); ?>">Beranda</a>
+                    <a class="nav-link" href="<?= base_url('home/about'); ?>">Tentang Pelindo</a>
+                    <a class="nav-link" href="<?= base_url('home/disclaimer'); ?>">Disclaimer</a>
+                    <a class="nav-link" href="<?= base_url('home/mekanisme'); ?>">Mekanisme Pelaporan</a>
+                    <a class="nav-link" href="<?= base_url('home/definisi'); ?>">Pelanggaran & Definisi</a>
+                    <a class="nav-link" href="<?= base_url('home/faq'); ?>">Pertanyaan & Jawaban</a>
+                    <a class="nav-link" href="<?= base_url('login'); ?>">Login <i class="fas fa-sign-in-alt"></i></a>
                 </div>
             </div>
         </div>

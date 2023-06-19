@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH')or exit('No direct script access allowed');
 class Master_model extends CI_Model {
-    public function send_mail($subject = null, $template = null){
+    public function send_mail($subject = null, $template = null, $email = null){
         $config = [
             //INI BAWAAN DARI GOOGLE
             'protocol'  => 'smtp',
@@ -19,7 +19,7 @@ class Master_model extends CI_Model {
         $this->email->initialize($config);
 
         $this->email->from('WBS Pelindo', 'Pelabuhan Indonesia');
-        $this->email->to('didiksetyaone0@gmail.com');
+        $this->email->to($email);
 
         $this->email->subject($subject);
         $this->email->message($template);

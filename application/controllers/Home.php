@@ -561,7 +561,7 @@ class Home extends CI_Controller
 
             $template = $this->load->view('user/template_email', $data, true);
 
-            $this->m->send_mail($subject, $template);
+            $this->m->send_mail($subject, $template, $email_pelapor);
 
             $output = [
                 'success' => true,

@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH')or exit('No direct script access allowed');
 class Master extends CI_Controller {
+
+    public function __construct(){
+        parent::__construct();
+        check_member_login();
+    }
+
     public function index(){
         $data = [
             'title' => 'Dashboard | WBS Pelindo',
@@ -89,7 +95,7 @@ class Master extends CI_Controller {
         
         $template = $this->load->view('user/template_email', $data, true);
         //send email
-        $send = $this->m->send_mail($subject, $template);
+        $send = $this->m->send_mail($subject, $template, $email);
         
         if($send == 1){
 
