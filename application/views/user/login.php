@@ -114,22 +114,22 @@
                     }
                 },
                 error: function(xhr){
-                    // if(xhr.status === 0){
-                    //     //no internet connection
-                    //     toastr["error"]('No internet connection', "Error")
-                    // } else if(xhr.status == 403){
-                    //     //access forbidden
-                    //     toastr["error"]('Access forbidden', "Error")
-                    // } else if(xhr.status == 404){
-                    //     //page not found
-                    //     toastr["error"]('Page not found', "Error")
-                    // } else if(xhr.status == 500){
-                    //     //internal server error
-                    //     toastr["error"]('Internal server error', "Error")
-                    // } else {
-                    //     //unknow error
-                    //     toastr["error"]('Unknow error', "Error")
-                    // }
+                    if(xhr.status === 0){
+                        //no internet connection
+                        toastr["error"]('No internet connection', "Error")
+                    } else if(xhr.status == 403){
+                        //access forbidden
+                        toastr["error"]('Access forbidden', "Error")
+                    } else if(xhr.status == 404){
+                        //page not found
+                        toastr["error"]('Page not found', "Error")
+                    } else if(xhr.status == 500){
+                        //internal server error
+                        toastr["error"]('Internal server error', "Error")
+                    } else {
+                        //unknow error
+                        toastr["error"]('Unknow error', "Error")
+                    }
                     undisabled_form();
                 }
             });

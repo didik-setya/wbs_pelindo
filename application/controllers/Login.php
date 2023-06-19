@@ -36,27 +36,25 @@ class Login extends CI_Controller {
 
         if($user){
             if($user->pass == $pass){
-                $params = [
-                    'email_user' => $user->email,
-                ];
-                $this->session->set_userdata($params);
+                $add_sess = ['email_user' => $email];
+                $this->session->set_userdata($add_sess);
 
                 $output = [
                     'success' => true,
                     'msg' => 'Login success',
-                    'redirect' => base_url('user')
+                    'redirect' => base_url('user'),
                 ];
 
             } else {
                 $output = [
                     'success' => false,
-                    'msg' => 'Password salah'
+                    'msg' => 'Password salah',
                 ];
             }
         } else {
             $output = [
                 'success' => false,
-                'msg' => 'Email atau username tidak terdaftar'
+                'msg' => 'Email atau username tidak terdaftar',
             ];
         }
         $output['type'] = 'result';

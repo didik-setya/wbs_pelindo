@@ -64,12 +64,12 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
 
-                            <a class="nav-link" href="<?= base_url('user') ?>">
+                            <a class="nav-link text-secondary" href="<?= base_url('user') ?>">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
 
-                            <a class="nav-link" href="<?= base_url('user/report') ?>">
+                            <a class="nav-link text-secondary" href="<?= base_url('user/report') ?>">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                                 Laporan
                             </a>
@@ -81,7 +81,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-
+                        <?php $this->load->view($view) ?>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

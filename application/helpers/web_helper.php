@@ -70,7 +70,7 @@ function get_member(){
 function get_pelapor(){
     $t = get_instance();
 
-    $email = $t->session->set_userdata('email_user');
+    $email = $t->session->userdata('email_user');
     $user = $t->db->where('email', $email)->get('pelapor')->row();
     return $user;
 }
